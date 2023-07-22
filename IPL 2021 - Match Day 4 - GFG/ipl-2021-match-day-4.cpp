@@ -13,7 +13,9 @@ class Solution
     // Function for finding maximum AND value.
     int maxAND (int arr[], int n)
     {
-        int res = 0,pat = 0;
+        int res = 0 , pat = 0;
+        // res stores the answer -> max and of two numbers
+        // pat stores the pattern generated so far
         for(int i=30;i>=0;i--){
             pat += (1<<i);
             int cnt = 0;
