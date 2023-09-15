@@ -7,17 +7,32 @@ class Solution{
 public:
     // function to find totient of n
     long long ETF(long long n){
-         int phi_n = n;
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) {
-                while (n % i == 0)
-                    n /= i;
-                phi_n -= phi_n / i;
-            }
+         float result = n;
+  
+    // Consider all prime factors of n
+    // and for every prime factor p,
+    // multiply result with (1 - 1/p)
+    for(int p = 2; p * p <= n; ++p)
+    {
+         
+        // Check if p is a prime factor.
+        if (n % p == 0)
+        {
+             
+            // If yes, then update n and result
+            while (n % p == 0)
+                n /= p;
+                 
+            result *= (1.0 - (1.0 / (float)p));
         }
-        if (n > 1)
-            phi_n -= phi_n / n;
-        return phi_n;
+    }
+  
+    // If n has a prime factor greater than sqrt(n)
+    // (There can be at-most one such prime factor)
+    if (n > 1)
+        result -= result / n;
+    long long ans = result;
+    return ans;
     }
 };
 
